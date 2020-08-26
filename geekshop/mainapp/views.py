@@ -8,7 +8,6 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from .models import Product, ProductCategory
-from basketapp.models import Basket
 
 JSON_PATH = 'mainapp/json'
 
@@ -16,13 +15,6 @@ JSON_PATH = 'mainapp/json'
 def load_from_json(file_name):
     with open(os.path.join(JSON_PATH, file_name + '.json'), 'r') as infile:
         return json.load(infile)
-
-
-def get_basket(user):
-    if user.is_authenticated:
-        return Basket.objects.filter(user=user)
-    else:
-        return []
 
 
 def get_hot_product():
@@ -41,7 +33,6 @@ def main(request):
         'title': 'geekshop',
         'products': Product.objects.filter(category__is_active=True)[:4],
         'new_products': Product.objects.all()[3:7],
-        'basket': get_basket(request.user),
     }
     return render(request, 'mainapp/index.html', context)
 
@@ -50,14 +41,10 @@ def new(request):
         'copyright': 'Golubeva Lyubov - GB',
         'title': 'geekshop',
         'products': Product.objects.all()[3:7],
-        'basket': get_basket(request.user),
     }
     return render(request, 'mainapp/index.html', context)
 
 def catalog(request, pk=None, page=1):
-    basket = []
-    if request.user.is_authenticated:
-        basket = Basket.objects.filter(user=request.user)
 
     links_menu = ProductCategory.objects.filter(is_active=True)
     category = {
@@ -90,7 +77,6 @@ def catalog(request, pk=None, page=1):
         'same_products': same_products,
         'category': category,
         'products': product_paginator,
-        'basket': basket
     }
 
     return render(request, 'mainapp/catalog.html', content)
@@ -108,9 +94,6 @@ def contacts(request):
 
 def product(request, pk):
     title = 'Product'
-    basket = []
-    if request.user.is_authenticated:
-        basket = Basket.objects.filter(user=request.user)
     links_menu = ProductCategory.objects.filter(category__is_active=True)
 
     product = get_object_or_404(Product, pk=pk)
@@ -122,6 +105,5 @@ def product(request, pk):
         'links_menu': links_menu,
         'product': product,
         'same_products': same_products,
-        'basket': basket,
     }
     return render(request, 'mainapp/product.html', content)

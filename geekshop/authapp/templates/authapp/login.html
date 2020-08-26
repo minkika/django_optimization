@@ -3,6 +3,10 @@
 
 
 {% block content %}
+
+    {% if 'register' in request.META.HTTP_REFERER %}
+        <span>Message sent</span>
+    {% endif %}
     <form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
         {% csrf_token %}
         {{ login_form.as_p }}

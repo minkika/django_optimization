@@ -1,0 +1,27 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="category_delete">
+        {% if category_to_delete.is_active %}
+            Are you sure to delete <strong>{{ category_to_delete.name }}</strong>?
+            <form action="{% url 'admin:category_delete' category_to_delete.pk %}" method="post">
+                {% csrf_token %}
+                <input class="btn btn-danger" type="submit" value="Delete">
+            </form>
+            <button class="btn btn-success">
+                <a href="{% url 'admin:categories' %}">Cancel</a>
+            </button>
+        {% else %}
+            Are you sure to restore <strong>{{ category_to_delete.name }}</strong>?
+            <form action="{% url 'admin:category_delete' category_to_delete.pk %}" method="post">
+                {% csrf_token %}
+                <input class="btn btn-info" type="submit" value="Restore">
+            </form>
+        {% endif %}
+        <button class="btn btn-success">
+            <a href="{% url 'admin:categories' %}">Cancel</a>
+        </button>
+    </div>
+{% endblock %}

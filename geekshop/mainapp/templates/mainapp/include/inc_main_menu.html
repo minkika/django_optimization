@@ -1,0 +1,52 @@
+{% load static %}
+<div class="header__menu">
+    <a
+            {% if request.resolver_match.url_name == 'main' %}
+                class="header__link header__link_active"
+            {% else %}
+                class="header__link"
+            {% endif %}
+                href="{% url 'main' %}"
+    >Home</a>
+    <a
+            {% if 'catalog' in request.resolver_match.route %}
+                class="header__link header__link_active"
+            {% else %}
+                class="header__link"
+            {% endif %}
+                href="{% url 'catalog:index' %}"
+    >Products</a>
+    <a
+            {% if request.resolver_match.url_name == 'contacts' %}
+                class="header__link header__link_active"
+            {% else %}
+                class="header__link"
+            {% endif %}
+                href="{% url 'contacts' %}"
+    >Contact</a>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'auth:edit' %}" class="header__link">
+            {{ user.first_name|default:'Unknown user' }}
+        </a>
+        <a href="{% url 'auth:logout' %}" class="header__link">Logout</a>
+    {% else %}
+        <a href="{% url 'auth:login' %}" class="header__link">Login</a>
+    {% endif %}
+
+    {% if user.is_superuser %}
+    <a class="header__link" href="{% url 'admin:users' %}">Admin tools</a>
+    {% endif %}
+
+    <a href="{% url 'basket:view' %}" class="header__link"> Cart items
+        <span>
+        {% if basket %}
+            {{ basket.0.total_cost|floatformat:0 }} ₽ ({{ basket.0.total_quantity }} pcs)
+        {% endif %}
+    </span>
+    </a>
+
+    {#    <span>#}
+    {#        <img alt="" src="{% static 'img/search.png' %}"/>#}
+    {#    </span>#}
+</div>

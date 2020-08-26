@@ -1,0 +1,22 @@
+{
+  "contacts": [
+    {
+      "title": "CALIFORNIA",
+      "phone": "1900-1234-5678",
+      "email": "calif@interior.com",
+      "address": "12 W 1st St, 90001 Los Angeles, California"
+    },
+    {
+      "title": "MOSCOW",
+      "phone": "8495-0-1234-5678",
+      "email": "moscow@interior.com",
+      "address": "12 W 1st St, 90001 Moscow, Russia"
+    },
+    {
+      "title": "PARIS",
+      "phone": "4400-1234-5678",
+      "email": "paris@interior.com",
+      "address": "12 W 1st St, 90001 Paris, France"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="wrapper" id="page-title">
+        <div class="container">
+            <div class="title">Contact Us</div>
+        </div>
+    </div>
+
+    <div class="wrapper section">
+        <div class="container">
+            <div class="tiles">
+                {% for address in contact_list %}
+                    <div class="tiles__tile tiles__tile_m">
+                        <div class="contacts-info">
+                            <div class="contacts-info__title">{{ address.title }}</div>
+                            <dl>
+                                <dt>
+                                    <b>Phone</b>
+                                </dt>
+                                <dd>
+                                    <a href="tel:0">{{ address.phone }}</a>
+                                </dd>
+                                <dt>
+                                    <b>E-mail</b>
+                                </dt>
+                                <dd>
+                                    <a href="mailto:mail">{{ address.email }}</a>
+                                </dd>
+                                <dt>
+                                    <b>Address</b>
+                                </dt>
+                                <dd>
+                                    <span>{{ address.address }}</span>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

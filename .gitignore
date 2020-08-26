@@ -1,2 +1,13 @@
-/geekshop/rerunmigrations.sh
 /geekshop/db.sqlite3
+/geekshop/adminapp/__pycache__/
+/geekshop/adminapp/migrations/__pycache__/
+/geekshop/adminapp/templatetags/__pycache__/
+/geekshop/authapp/__pycache__/
+/geekshop/authapp/migrations/__pycache__
+/geekshop/basketapp/__pycache__/
+/geekshop/basketapp/migrations/__pycache__/
+/geekshop/tmp/
+/geekshop/mainapp/migrations/
+/geekshop/authapp/migrations/
+/geekshop/basketapp/migrations/
+__pycache__*

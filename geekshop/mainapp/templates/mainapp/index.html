@@ -1,0 +1,197 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="wrapper slider slider_top">
+        <div class="container">
+            <div class="info">
+                <div class="info__header color-green">Trending</div>
+                <div class="info__title">Fishnet chair</div>
+                <div class="info__description">
+                    Seat and back with upholstery made of cold cure foam. Steel frame, available in matt
+                    powder-coated black or highly polished chrome.
+                </div>
+                <a class="button" href="{% url 'product' %}">
+                    <span class="button_text">Order us</span>
+                </a>
+            </div>
+            <div class="slider-bullets">
+                <span class="slider-bullets__bullet"></span>
+                <span class="slider-bullets__bullet slider-bullets__bullet_active"></span>
+                <span class="slider-bullets__bullet"></span>
+            </div>
+        </div>
+    </div>
+
+ <div class="wrapper section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tabs">
+                    <span class="section-tabs__tab section-tabs__tab_active">Featured</span>
+                    <span class="section-tabs__tab">New</span>
+                </span>
+                <span class="section-aside">Explore all</span>
+            </div>
+            <div class="tiles">
+
+                {% for product in products %}
+                    <a class="tiles__tile" href="{% url 'catalog:product' product.pk %}">
+
+                        <div class="tile-info">
+                            <div class="tile-info__content">
+                                <span class="button button_round"></span>
+                                <div class="tile-info__title">{{ product.name }}</div>
+                                <div class="tile-info__description">{{ product.short_desc }}</div>
+                            </div>
+                        </div>
+                        <img src="media/{{ product.image }}" alt="">
+                    </a>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="promo">
+                <div class="promo-item">
+                    <img alt="" src="{% static 'img/promo-img1.png' %}"/>
+                    <div class="info info_s">
+                        <div class="info__header color-blue">Exclusive</div>
+                        <div class="info__title">Fishnet chair</div>
+                        <div class="info__description">
+                            Seat and back with upholstery made of cold cure foam. Steel frame, available in matt
+                        </div>
+                        <a class="button" href="{% url 'product' %}">
+                            <span class="button_text">Order us</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="promo-item">
+                    <img alt="" src="{% static 'img/promo-img.png' %}"/>
+                    <div class="info info_s">
+                        <div class="info__header color-blue">Exclusive</div>
+                        <div class="info__title">Fishnet chair</div>
+                        <div class="info__description">
+                            Seat and back with upholstery made of cold cure foam. Steel frame, available in matt
+                        </div>
+                        <a class="button" href="{% url 'product' %}">
+                            <span class="button_text">Order us</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="wrapper section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-title">Trending products</span>
+                <span class="section-aside">Explore all</span>
+            </div>
+            <div class="tiles">
+                <div class="tiles__tile tiles__tile_m">
+                    <a href="{% url 'product' %}">
+                        <img alt="" src="{% static 'img/product-11.png' %}"/>
+                    </a>
+                </div>
+                <div class="tiles__tile tiles__tile_m">
+                    <a href="{% url 'product' %}">
+                        <img alt="" src="{% static 'img/product-21.png' %}"/>
+                    </a>
+                </div>
+                <div class="tiles__tile tiles__tile_m">
+                    <a href="{% url 'product' %}">
+                        <img alt="" src="{% static 'img/product-31.png' %}"/>
+                    </a>
+                </div>
+                <div class="tiles__tile tiles__tile_m">
+                    <a href="{% url 'product' %}">
+                        <img alt="" src="{% static 'img/product-41.png' %}"/>
+                    </a>
+                </div>
+                <div class="tiles__tile tiles__tile_m">
+                    <a href="{% url 'product' %}">
+                        <img alt="" src="{% static 'img/product-5.png' %}"/>
+                    </a>
+                </div>
+                <div class="tiles__tile tiles__tile_m">
+                    <a href="{% url 'product' %}">
+                        <img alt="" src="{% static 'img/product-6.png' %}"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="wrapper slider slider_middle">
+        <div class="container">
+            <div class="info">
+                <div class="info__header color-red">Hot deal</div>
+                <div class="info__title">Fishnet table</div>
+                <div class="info__description">
+                    Seat and back with upholstery made of cold cure foam. Steel frame, available in matt
+                    powder-coated black or highly polished chrome.
+                </div>
+                <a class="button" href="#">
+                    <span class="button_text">Order us</span>
+                </a>
+            </div>
+            <div class="slider-bullets">
+                <span class="slider-bullets__bullet"></span>
+                <span class="slider-bullets__bullet slider-bullets__bullet_active"></span>
+                <span class="slider-bullets__bullet"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="wrapper section">
+        <div class="container">
+            <div class="tiles">
+                <div class="tiles__tile tiles__tile_l">
+                    <a href="{% url 'product' %}">
+                        <img alt="" src="{% static 'img/product-1-lg.png' %}"/>
+
+                        <div class="info info_s">
+                            <div class="info__header color-blue">Exclusive</div>
+                            <div class="info__title">Fishnet pillow</div>
+                            <div class="info__description">
+                                Seat and back with upholstery made of cold cure foam. Steel frame, available in
+                                matt
+                            </div>
+                            <span class="button">
+                            <span class="button_text">Order us</span>
+                        </span>
+                        </div>
+                    </a>
+                </div>
+                <div class="tiles__tile">
+                    <a href="{% url 'product' %}">
+                        <img alt="" src="{% static 'img/product-2-sm.png' %}"/>
+                    </a>
+                </div>
+                <div class="tiles__tile">
+                    <a href="{% url 'product' %}">
+                        <img alt="" src="{% static 'img/product-3-sm.png' %}"/>
+                    </a>
+                </div>
+                <div class="tiles__tile">
+                    <a href="{% url 'product' %}">
+                        <img alt="" src="{% static 'img/product-4-sm.png' %}"/>
+                    </a>
+                </div>
+                <div class="tiles__tile">
+                    <a href="{% url 'product' %}">
+                        <img alt="" src="{% static 'img/product-5-sm.png' %}"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

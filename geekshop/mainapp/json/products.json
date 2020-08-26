@@ -1,0 +1,128 @@
+[
+  {
+    "category": "home",
+    "name": "lamp-egg",
+    "image": "product_images/product-1.png",
+    "short_desc": "good lamp",
+    "description": "good lamp",
+    "price": "289.5",
+    "quantity": "0"
+  },
+  {
+    "category": "office",
+    "name": "two chairs",
+    "image": "product_images/product-2.png",
+    "short_desc": "good chairs",
+    "description": "yes, two",
+    "price": "3687.2",
+    "quantity": "0"
+  },
+  {
+    "category": "home",
+    "name": "melted pot",
+    "image": "product_images/product-3.png",
+    "short_desc": "melted pot",
+    "description": "good melted pot",
+    "price": "157.99",
+    "quantity": "0"
+  },
+  {
+    "category": "modern",
+    "name": "red chair",
+    "image": "product_images/product-4.png",
+    "short_desc": "good modern chair",
+    "description": "good modern chair",
+    "price": "1895.25",
+    "quantity": "0"
+  },
+  {
+    "category": "classic",
+    "name": "marble lamp",
+    "image": "product_images/product-11.png",
+    "short_desc": "good lamp",
+    "description": "marble lamp",
+    "price": "587.41",
+    "quantity": "0"
+  },
+  {
+    "category": "home",
+    "name": "mortar",
+    "image": "product_images/product-5.png",
+    "short_desc": "good mortar",
+    "description": "good mortar",
+    "price": "58.19",
+    "quantity": "0"
+  },
+  {
+    "category": "home",
+    "name": "vase",
+    "image": "product_images/product-6.png",
+    "short_desc": "good vase",
+    "description": "good vase",
+    "price": "141.34",
+    "quantity": "0"
+  },
+  {
+    "category": "office",
+    "name": "white chair",
+    "image": "product_images/product-21.png",
+    "short_desc": "good chair",
+    "description": "good chair",
+    "price": "89.14",
+    "quantity": "0"
+  },
+  {
+    "category": "modern",
+    "name": "weird lamp",
+    "image": "product_images/product-31.png",
+    "short_desc": "good lamp",
+    "description": "good weird lamp",
+    "price": "58.58",
+    "quantity": "0"
+  },
+  {
+    "category": "modern",
+    "name": "wall lamp",
+    "image": "product_images/product-41.png",
+    "short_desc": "good lamp",
+    "description": "good lamp",
+    "price": "58.10",
+    "quantity": "0"
+  },
+  {
+    "category": "office",
+    "name": "clock",
+    "image": "product_images/product-4-sm.png",
+    "short_desc": "good clock",
+    "description": "good clock",
+    "price": "51.71",
+    "quantity": "0"
+  },
+  {
+    "category": "office",
+    "name": "couch",
+    "image": "product_images/product-3-sm.png",
+    "short_desc": "good couch",
+    "description": "good couch",
+    "price": "2587.41",
+    "quantity": "0"
+  },
+  {
+    "category": "classic",
+    "name": "stranger thing",
+    "image": "product_images/product-2-sm.png",
+    "short_desc": "good something",
+    "description": "good something",
+    "price": "74.20",
+    "quantity": "0"
+  },
+  {
+    "category": "modern",
+    "name": "massive lamp",
+    "image": "product_images/product-5-sm.png",
+    "short_desc": "good lamp",
+    "description": "good lamp",
+    "price": "1870.56",
+    "quantity": "0"
+  }
+]

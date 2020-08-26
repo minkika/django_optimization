@@ -1,0 +1,34 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="user_delete">
+    {% if user_to_delete.is_active %}
+        Are you sure to delete <b> {{ user_to_delete.username }} {% if user_to_delete.first_name %}
+                    ({{ user_to_delete.first_name|title }}
+                    {% if user_to_delete.last_name %}
+                        {{ user_to_delete.last_name|title }}
+                    {% endif %})
+                {% endif %}</b>?
+        <form action="{% url 'admin:user_delete' user_to_delete.pk %}" method="post">
+            {% csrf_token %}
+            <input class="btn btn-danger" type="submit" value="Delete">
+        </form>
+    {% else %}
+        Are you sure to restore <b> {{ user_to_delete.username }} {% if user_to_delete.first_name %}
+                    ({{ user_to_delete.first_name|title }}
+                    {% if user_to_delete.last_name %}
+                        {{ user_to_delete.last_name|title }}
+                    {% endif %})
+                {% endif %}</b>?
+        <form action="{% url 'admin:user_delete' user_to_delete.pk %}" method="post">
+            {% csrf_token %}
+            <input class="btn btn-info" type="submit" value="Restore">
+        </form>
+    {% endif %}
+        <button class="btn btn-success">
+            <a href="{% url 'admin:users' %}">Cancel</a>
+        </button>
+    </div>
+{% endblock %}

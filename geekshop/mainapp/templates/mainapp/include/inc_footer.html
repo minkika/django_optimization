@@ -1,0 +1,64 @@
+{% load static %}
+
+<div class="wrapper mobile">
+    <div class="container">
+        <div class="mobile__content">
+            <div>
+                <div class="mobile__heading">Mobile app</div>
+                <div class="mobile__title">Find. Follow. Favorite.</div>
+                <div class="mobile__description">Save your favorites and share your style.</div>
+            </div>
+            <div class="mobile__buttons">
+                <a href="#"><img alt="" src="{% static 'img/app-store.png' %}"/></a>
+                <a href="#"><img alt="" src="{% static 'img/google-play.png' %}"/></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper footer">
+    <div class="container">
+        <div class="footer__content">
+            <div class="footer__nav">
+                <div>
+                    <h3>Contact us</h3>
+                    <address>
+                        132A Bridge Road Richmond VIC
+                        Australia.
+                    </address>
+                    <div>
+                        Talk to us on <a href="tel:000000">1300 132</a>
+                        <a href="mailto:info@interior.com">info@interior.com</a>
+                    </div>
+                </div>
+                <div>
+                    <h3>Useful Information</h3>
+                    <div>
+                        <ul>
+                            <li><a href="#">Sales terms</a></li>
+                            <li><a href="#">Customer care</a></li>
+                            <li><a href="#">Delivery</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">Architect accounts</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Exchanges & returns</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h3>Let’s Stay in Touch!</h3>
+                    <p>Suscribe to know about our latest news, products and special offers just for
+                        suscribers.</p>
+                    <input placeholder="your email address" type="email"/>
+                </div>
+            </div>
+            <div class="footer__copy">
+                <div>© Copyright - {{ copyright|upper }} {% now "Y" %}</div>
+                <div><img alt="" src="{% static 'img/social-links.png' %}"/></div>
+                <div>
+                    <a href="#">Terms & Conditions</a> / <a href="#">Privacy policy & Cookies</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

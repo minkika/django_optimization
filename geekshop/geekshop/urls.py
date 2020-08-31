@@ -7,6 +7,7 @@ from geekshop import settings
 
 urlpatterns = [
     path('', mainapp.main, name='main'),
+    path('', include('social_django.urls', namespace='social')),
     path('product/', mainapp.product, name='product'),
     path('catalog/', include('mainapp.urls', namespace='catalog')),
     path('basket/', include('basketapp.urls', namespace='basket')),

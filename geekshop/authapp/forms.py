@@ -3,6 +3,7 @@ import random
 
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserChangeForm, UserCreationForm
+from .models import ShopUserProfile
 
 from .models import ShopUser
 
@@ -62,3 +63,14 @@ class ShopUserEditForm(UserChangeForm):
             raise forms.ValidationError("You should be elder than 18 y.o!")
 
         return data
+
+
+class ShopUserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = ShopUserProfile
+        fields = ('gender')
+
+    def __init__(self, *args, **kwargs):
+        super(ShopUserProfileEditForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'

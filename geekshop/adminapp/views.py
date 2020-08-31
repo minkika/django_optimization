@@ -1,29 +1,14 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
-from django.shortcuts import render
-
-from authapp.models import ShopUser
-from django.urls import reverse
-from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView
-from django.views.generic import DeleteView
-from django.views.generic import DetailView
-from django.views.generic import ListView
-from django.views.generic import UpdateView
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
-from mainapp.models import ProductCategory
-
-from mainapp.models import Product
-
+from adminapp.forms import ProductAdminEditForm, ProductCategoryEditForm, ShopUserAdminEditForm
 from authapp.forms import ShopUserRegisterForm
-
-from adminapp.forms import ShopUserAdminEditForm
-
-from adminapp.forms import ProductCategoryEditForm
-
-from adminapp.forms import ProductAdminEditForm
+from authapp.models import ShopUser
+from mainapp.models import Product, ProductCategory
 
 
 # @user_passes_test(lambda u: u.is_superuser)
@@ -50,6 +35,7 @@ class UsersListView(ListView):
         context['title'] = 'admin / users'
         return context
 
+
 @user_passes_test(lambda u: u.is_superuser)
 def user_create(request):
     title = 'users / create'
@@ -65,12 +51,13 @@ def user_create(request):
     content = {'title': title, 'update_form': user_form}
     return render(request, 'adminapp/user_update.html', content)
 
+
 @user_passes_test(lambda u: u.is_superuser)
 def user_update(request, pk):
     title = 'users / update'
 
     edit_user = get_object_or_404(ShopUser, pk=pk)
-    if request.method=='POST ':
+    if request.method == 'POST ':
         edit_form = ShopUserAdminEditForm(request.POST, request.FILES, instance=edit_user)
         if edit_form.is_valid():
             edit_form.save()
@@ -79,6 +66,7 @@ def user_update(request, pk):
         edit_form = ShopUserAdminEditForm(instance=edit_user)
     content = {'title': title, 'update_form': edit_form}
     return render(request, 'adminapp/user_update.html', content)
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def user_delete(request, pk):
@@ -97,6 +85,7 @@ def user_delete(request, pk):
     content = {'title': title, 'user_to_delete': user_item}
     return render(request, 'adminapp/user_delete.html', content)
 
+
 @user_passes_test(lambda u: u.is_superuser)
 def products(request, pk):
     title = 'admin / products'
@@ -109,6 +98,7 @@ def products(request, pk):
     }
 
     return render(request, 'adminapp/products.html', content)
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def product_create(request, pk):
@@ -127,6 +117,7 @@ def product_create(request, pk):
 
     return render(request, 'adminapp/product_update.html', content)
 
+
 @user_passes_test(lambda u: u.is_superuser)
 def product_update(request, pk):
     title = 'product / change'
@@ -144,6 +135,7 @@ def product_update(request, pk):
     content = {'title': title, 'update_form': edit_form, 'category': edit_product.category}
 
     return render(request, 'adminapp/product_update.html', content)
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def product_delete(request, pk):
@@ -166,6 +158,7 @@ def product_delete(request, pk):
 
     return render(request, 'adminapp/product_delete.html', content)
 
+
 # @user_passes_test(lambda u: u.is_superuser)
 # def product_read(request, pk):
 #     title = 'product / details'
@@ -186,6 +179,7 @@ class ProductDetailView(DetailView):
         context['title'] = 'product / details'
         return context
 
+
 @user_passes_test(lambda u: u.is_superuser)
 def categories(request):
     title = 'admin / category'
@@ -196,6 +190,7 @@ def categories(request):
     }
 
     return render(request, 'adminapp/categories.html', content)
+
 
 # @user_passes_test(lambda u: u.is_superuser)
 # def category_create(request):
@@ -227,6 +222,7 @@ class ProductCategoryCreateView(CreateView):
         context['title'] = 'categories / create'
         return context
 
+
 # @user_passes_test(lambda u: u.is_superuser)
 # def category_update(request, pk):
 #     title = 'categories / change'
@@ -257,6 +253,8 @@ class ProductCategoryUpdateView(UpdateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'categories / change'
         return context
+
+
 #
 # @user_passes_test(lambda u: u.is_superuser)
 # def category_delete(request, pk):

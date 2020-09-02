@@ -8,16 +8,16 @@
         {% if user.first_name %}
             {{ user.first_name|title }}
         {% else %}
-            Пользователь
+            User
         {% endif %}
     </div>
     <table class="table orders_list">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Создан</th>
-            <th>Обновлен</th>
-            <th>Статус</th>
+            <th>created</th>
+            <th>edited</th>
+            <th>status</th>
         </tr>
         </thead>
         <tbody>
@@ -30,20 +30,20 @@
                     <td>{{ item.get_status_display }}</td>
                     <td>
                         <a href="{% url 'ordersapp:order_read' item.pk %}">
-                            посмотреть
+                            details
                         </a>
                     </td>
                     <td>
                         {% if item.status == 'FM' %}
                             <a href="{% url 'ordersapp:order_update' item.pk %}">
-                                редактировать
+                                edit
                             </a>
                         {% endif %}
                     </td>
                     <td>
                         {% if item.status == 'FM' %}
                             <a href="{% url 'ordersapp:order_delete' item.pk %}">
-                                удалить
+                                delete
                             </a>
                         {% endif %}
                     </td>
@@ -54,12 +54,12 @@
     </table>
     <button class="btn btn-default btn-round">
         <a href="{% url 'main' %}">
-            на главную
+            main
         </a>
     </button>
     <button class="btn btn-default btn-round">
         <a href="{% url 'ordersapp:order_create' %}">
-            новый
+            new
         </a>
     </button>
 {% endblock %}

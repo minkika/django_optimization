@@ -3,7 +3,7 @@ from django.forms import inlineformset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DeleteView, DetailView, ListView
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from basketapp.models import Basket
 from ordersapp.forms import OrderItemForm
@@ -59,24 +59,19 @@ class OrderItemsCreate(CreateView):
 
         return super(OrderItemsCreate, self).form_valid(form)
 
-class OrderItemsUpdate(CreateView):
+class OrderItemsUpdate(UpdateView):
     model = Order
     fields = []
     success_url = reverse_lazy('ordersapp:orders_list')
 
     def get_context_data(self, **kwargs):
-        data = super(OrderItemsCreate, self).get_context_data(**kwargs)
-
+        data = super(OrderItemsUpdate, self).get_context_data(**kwargs)
         OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemForm, extra=1)
         if self.request.POST:
             data['orderitems'] = OrderFormSet(self.request.POST, instance=self.object)
-            formset = OrderFormSet()
         else:
             data['orderitems'] = OrderFormSet(instance=self.object)
-            formset = OrderFormSet()
 
-
-        data['orderitems'] = formset
         return data
 
     def form_valid(self, form):
@@ -92,7 +87,7 @@ class OrderItemsUpdate(CreateView):
         if self.object.get_total_cost() == 0:
             self.object.delete()
 
-        return super(OrderItemsCreate, self).form_valid(form)
+        return super(OrderItemsUpdate, self).form_valid(form)
 
 class OrderDelete(DeleteView):
    model = Order

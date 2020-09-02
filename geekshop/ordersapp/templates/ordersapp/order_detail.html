@@ -15,13 +15,13 @@
                </span>
                <span class="product_name">{{ item.product.name }}</span>
                <span class="product_price">
-                   {{ item.product.price }}&nbspруб
+                   {{ item.product.price }}euro
                </span>
                <span class="product_quantitiy">
-                   x {{ item.quantity }} шт.
+                   x {{ item.quantity }} pcs.
                </span>
                <span class="product_cost">
-                    = {{ item.get_product_cost }}&nbspруб
+                    = {{ item.get_product_cost }}euro
                </span>
            </div>
        {% endfor %}

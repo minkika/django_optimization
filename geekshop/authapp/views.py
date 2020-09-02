@@ -54,7 +54,7 @@ def register(request):
 
 
 def edit(request):
-    title = 'редактирование'
+    title = 'edit'
 
     if request.method == 'POST':
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
@@ -93,12 +93,9 @@ def send_verify_mail(user):
 from django.db import transaction
 from authapp.forms import ShopUserProfileEditForm
 
-...
-
-
 @transaction.atomic
 def edit(request):
-    title = 'редактирование'
+    title = 'edit'
 
     if request.method == 'POST':
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)

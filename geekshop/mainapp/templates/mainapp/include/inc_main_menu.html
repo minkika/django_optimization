@@ -26,8 +26,23 @@
     >Contact</a>
 
     {% if user.is_authenticated %}
-        <a href="{% url 'auth:edit' %}" class="header__link">
-            {{ user.first_name|default:'Unknown user' }}
+        <a class="dropdown">
+            <a class="dropdown-toggle header__link" href="" data-toggle="dropdown">
+                {{ user.first_name|default:'Unknown user' }}
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="header__link" href="{% url 'auth:edit' %}">
+                        Profile
+                    </a>
+                </li>
+                <li>
+                    <a class="header__link" href="{% url 'ordersapp:orders_list' %}">
+                        Orders
+                    </a>
+                </li>
+            </ul>
         </a>
         <a href="{% url 'auth:logout' %}" class="header__link">Logout</a>
     {% else %}
@@ -35,7 +50,7 @@
     {% endif %}
 
     {% if user.is_superuser %}
-    <a class="header__link" href="{% url 'admin:users' %}">Admin tools</a>
+        <a class="header__link" href="{% url 'admin:users' %}">Admin tools</a>
     {% endif %}
 
     <a href="{% url 'basket:view' %}" class="header__link"> Cart items
@@ -49,4 +64,4 @@
     {#    <span>#}
     {#        <img alt="" src="{% static 'img/search.png' %}"/>#}
     {#    </span>#}
-</div>
+    </a>

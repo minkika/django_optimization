@@ -12,12 +12,13 @@
             <div class="basket__item-controls">
                 <div>
                     <b>{{ item.cost }}</b>
-                    <input type="number" name="{{ item.pk }}" min="0" value="{{ item.quantity }}">
+                    <input type="number" name="{{ item.pk }}" min="0" max="{{ item.product.quantity }}" value=
+                            "{{ item.quantity }}">
                 </div>
                 <a class="basket__item-remove" href="{% url 'basket:remove' item.pk %}">remove</a>
             </div>
             <div class="basket__item-price"><em>{{item.quantity}}</em> <strong>✕</strong> <b
-            >{{ item.product.price }}</b>₽</div>
+            >{{ item.product.price }}</b>euro</div>
         </div>
     </div>
 {% endfor %}
@@ -25,6 +26,6 @@
 {% if basket_items %}
     <div class="basket__total">
         {{ basket_items.0.total_quantity }} items
-        <div class="product__price"><b>{{ basket_items.0.total_cost }}</b>₽</div>
+        <div class="product__price"><b>{{ basket_items.0.total_cost }}</b>euro</div>
     </div>
 {% endif %}

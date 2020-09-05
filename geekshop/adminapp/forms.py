@@ -1,3 +1,5 @@
+from attr.filters import exclude
+
 from authapp.forms import ShopUserEditForm
 
 from authapp.models import ShopUser
@@ -26,7 +28,11 @@ class ProductCategoryEditForm(forms.ModelForm):
 class ProductAdminEditForm(ShopUserEditForm):
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ('category', 'name', 'image', 'short_desc', 'description', 'price', 'quantity', 'is_active',)
+        # exclude = exclude('password',)
+        # exclude = ('password',)
+        # exclude = ['password']
+        # fields = exclude('password')
 
     def __init__(self, *args, **kwargs):
         super(ProductAdminEditForm, self).__init__(*args, **kwargs)

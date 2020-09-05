@@ -56,7 +56,7 @@
     <a href="{% url 'basket:view' %}" class="header__link"> Cart items
         <span>
         {% if basket %}
-            {{ basket.0.total_cost|floatformat:0 }} ₽ ({{ basket.0.total_quantity }} pcs)
+            {{ basket.0.total_cost|floatformat:0 }} euro ({{ basket.0.total_quantity }} pcs)
         {% endif %}
     </span>
     </a>

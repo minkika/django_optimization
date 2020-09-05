@@ -5,4 +5,14 @@
     <div class="basket__items">
         {% include 'basketapp/includes/inc_basket_list.html' %}
     </div>
+    <button class="btn btn-round">
+        <a href="{% url 'ordersapp:order_create' %}">
+            create order
+        </a>
+    </button>
+    <button class="btn btn-round">
+        <a href="{% url 'main' %}">
+            main
+        </a>
+    </button>
 {% endblock %}

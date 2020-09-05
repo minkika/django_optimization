@@ -9,16 +9,26 @@
         {% endblock %}
     </title>
     {% block css %}
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&display=swap"
+              rel="stylesheet"/>
+        <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
     {% endblock %}
     {% block js %}
 
     {% endblock %}
 </head>
 <body>
-	<div class="container">
+<div id="page">
+    <div class="wrapper" id="header">
+        <div class="container">
+            <div class="header__logo"></div>
+            {% block menu %}
+                {% include 'mainapp/include/inc_main_menu.html' %}
+            {% endblock %}
+        </div>
+    </div>
+
         <div class="login">
             <div class="h2 text-center head">
                 Authentification

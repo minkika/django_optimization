@@ -8,6 +8,7 @@
         <div class="container">
             <div class="product">
                 <div class="product__cell">
+                    {% include 'mainapp/include/inc_submenu.html' %}
                     <div style="margin: 50px 0px 0px 50px">
                         <img alt="" src="/media/{{ hot_product.image }}"/>
                     </div>
@@ -73,37 +74,37 @@
         </div>
     </div>
 
-    <div class="wrapper section">
-        <div class="container">
-            {% include 'mainapp/include/inc_submenu.html' %}
-
-            <div class="tiles">
-                <div class="paginator">
-                    {% if products.has_previous %}
-                        <a href="{% url 'catalog:page' category.pk products.previous_page_number %}"><</a>
-                    {% endif %}
-                    <span class="current">
-                    Page {{ products.number }} of {{ products.paginator.num_pages }}
-                </span>
-                    {% if products.has_next %}
-                        <a href="{% url 'catalog:page' category.pk products.next_page_number %}">></a>
-                    {% endif %}
-                </div>
-                {% for object in objects %}
-                    <a class="tiles__tile" href="#">
-                        <div class="tile-info">
-                            <div class="tile-info__content">
-                                <span class="button button_round"></span>
-                                <div class="tile-info__title">{{ object.name }}</div>
-                                <div class="tile-info__description">{{ object.short_desc }}</div>
-                            </div>
-                        </div>
-                        <img alt="{{ object.name }}" src="{{ object.image|media_folder_products }}"/>
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+{#    <div class="wrapper section">#}
+{#        <div class="container">#}
+{#            {% include 'mainapp/include/inc_submenu.html' %}#}
+{##}
+{#            <div class="tiles">#}
+{#                <div class="paginator">#}
+{#                    {% if products.has_previous %}#}
+{#                        <a href="{% url 'catalog:page' category.pk products.previous_page_number %}"><</a>#}
+{#                    {% endif %}#}
+{#                    <span class="current">#}
+{#                    Page {{ products.number }} of {{ products.paginator.num_pages }}#}
+{#                </span>#}
+{#                    {% if products.has_next %}#}
+{#                        <a href="{% url 'catalog:page' category.pk products.next_page_number %}">></a>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{#                {% for object in objects %}#}
+{#                    <a class="tiles__tile" href="#">#}
+{#                        <div class="tile-info">#}
+{#                            <div class="tile-info__content">#}
+{#                                <span class="button button_round"></span>#}
+{#                                <div class="tile-info__title">{{ object.name }}</div>#}
+{#                                <div class="tile-info__description">{{ object.short_desc }}</div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <img alt="{{ object.name }}" src="{{ object.image|media_folder_products }}"/>#}
+{#                    </a>#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 
     <div class="wrapper">
         <div class="container">

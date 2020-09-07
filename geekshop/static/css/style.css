@@ -123,6 +123,13 @@ body {
     z-index: 1;
 }
 
+#header .container {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
 .header__logo {
     width: 185px;
     height: 22px;
@@ -134,11 +141,6 @@ body {
 }
 
 .header__menu {
-    position: absolute;
-    right: 0;
-    top: 0;
-    white-space: nowrap;
-    display: inline-block;
 }
 
 .header__menu span {

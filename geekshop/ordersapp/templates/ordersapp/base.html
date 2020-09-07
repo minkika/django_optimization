@@ -30,10 +30,23 @@
         </div>
     </div>
 
-    {% block content %}
+    <div class="wrapper" id="page-title">
+        <div class="container">
+            <div class="title">
+                Ваши заказы,
+                {% if user.first_name %}
+                    {{ user.first_name|title }}
+                {% else %}
+                    User
+                {% endif %}
+            </div>
+        </div>
+    </div>
 
-    {% endblock %}
-
+    <div class="wrapper section">
+        {% block content %}
+        {% endblock %}
+    </div>
 </div>
 </body>
 </html>

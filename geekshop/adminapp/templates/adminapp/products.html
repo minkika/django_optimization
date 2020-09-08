@@ -1,12 +1,13 @@
-{% extends 'adminapp/base.html' %}
+{% extends 'mainapp/page-layout.html' %}
 {% load static %}
 
+{% block menu %}
+{% include 'adminapp/includes/inc_menu.html' %}
+{% endblock %}
 
 {% block content %}
     <div class="products_list">
-		<button class="new_product">
-			<a href={% url 'admin:product_create' category.pk %}>New product</a>
-		</button>
+		<button class="new_product"><a href={% url 'admin:product_create' category.pk %}>New product</a></button>
         <hr>
 		
 		{% for object in objects %}

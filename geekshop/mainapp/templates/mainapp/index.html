@@ -1,5 +1,9 @@
-{% extends 'mainapp/base.html' %}
+{% extends 'mainapp/page-layout.html' %}
 {% load static %}
+
+{% block header %}
+    {% include 'mainapp/block-header.html' with className=" header_absolute" %}
+{% endblock %}
 {% block content %}
     <div class="wrapper slider slider_top">
         <div class="container">

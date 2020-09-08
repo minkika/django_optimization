@@ -1,24 +1,22 @@
-{% extends 'adminapp/base.html' %}
+{% extends 'mainapp/page-layout.html' %}
 {% load static %}
+{% load avatar_tag %}
 
+{% block menu %}
+    {% include 'adminapp/includes/inc_menu.html' %}
+{% endblock %}
 
 {% block content %}
-    <div class="category_delete">
-        {% if product_to_delete.is_active %}
-            Are you sure to delete <strong>{{ product_to_delete.name }}</strong>?
-            <form action="{% url 'admin:product_delete' product_to_delete.pk %}" method="post">
-                {% csrf_token %}
-                <input class="btn btn-danger" type="submit" value="Delete">
-            </form>
-        {% else %}
-            Are you sure to restore <strong>{{ product_to_delete.name }}</strong>?
-            <form action="{% url 'admin:product_delete' product_to_delete.pk %}" method="post">
-                {% csrf_token %}
-                <input class="btn btn-info" type="submit" value="Restore">
-            </form>
-        {% endif %}
+    <div class="product_delete">
+        Sure to {% if object.is_active %}delete{% else %}restore{% endif %} product<strong>
+        {{ object.name|title }}</strong>?
+        <form action="{% url 'admin:product_delete' object.pk %}" method="post">
+            {% csrf_token %}
+            <input class="btn btn-danger" type="submit"
+                   value="{% if object.is_active %}Delete{% else %} Restore{% endif %}">
+        </form>
         <button class="btn btn-success">
-            <a href="{% url 'admin:products' product_to_delete.category.pk %}">Cancel</a>
+            <a href="{% url 'admin:products' object.category.pk %}">Cancel</a>
         </button>
     </div>
 {% endblock %}

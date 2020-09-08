@@ -1,0 +1,34 @@
+{% extends 'mainapp/page-layout.html' %}
+{% load static %}
+{% load avatar_tag %}
+
+{% block content %}
+    {% include 'mainapp/include/block-submenu.html' %}
+
+    <div class="tiles">
+        <div class="paginator">
+            {% if products.has_previous %}
+                <a href="{% url 'catalog:page' category.pk products.previous_page_number %}"><</a>
+            {% endif %}
+            <span class="current">
+                    Page {{ products.number }} of {{ products.paginator.num_pages }}
+                </span>
+            {% if products.has_next %}
+                <a href="{% url 'catalog:page' category.pk products.next_page_number %}">></a>
+            {% endif %}
+        </div>
+        {% for product in products %}
+            <a class="tiles__tile" href="{% url 'catalog:product' product.pk %}">
+                <div class="tile-info">
+                    <div class="tile-info__content">
+                        <span class="button button_round"></span>
+                        <div class="tile-info__title">{{ product.name }}</div>
+                        <div class="tile-info__description">{{ product.short_desc }}</div>
+                    </div>
+                </div>
+                <img alt="{{ product.name }}" src="{{ product.image|media_folder_products }}"/>
+            </a>
+        {% endfor %}
+    </div>
+
+{% endblock %}

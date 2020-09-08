@@ -53,21 +53,6 @@ def register(request):
     return render(request, 'authapp/register.html', content)
 
 
-def edit(request):
-    title = 'edit'
-
-    if request.method == 'POST':
-        edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
-        if edit_form.is_valid():
-            edit_form.save()
-            return HttpResponseRedirect(reverse('auth:edit'))
-    else:
-        edit_form = ShopUserEditForm(instance=request.user)
-
-    content = {'title': title, 'edit_form': edit_form}
-
-    return render(request, 'authapp/edit.html', content)
-
 def verify(request, email, activation_key):
     try:
         user = ShopUser.objects.get(email=email)
@@ -95,7 +80,7 @@ from authapp.forms import ShopUserProfileEditForm
 
 @transaction.atomic
 def edit(request):
-    title = 'edit'
+    title = 'user / edit'
 
     if request.method == 'POST':
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)

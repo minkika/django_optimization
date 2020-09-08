@@ -1,19 +1,9 @@
 <div class="header__menu">
     <a class="header__link" href="{% url 'main' %}">Site</a>
-    <a
-            {% if request.resolver_match.url_name == 'users' %}
-                class="header__link header__link_active"
-            {% else %}
-                class="header__link"
-            {% endif %}
-                href="{% url 'admin:users' %}"
-    >Users</a>
-    <a
-            {% if request.resolver_match.url_name == 'categories' or category.name %}
-                class="header__link header__link_active"
-            {% else %}
-                class="header__link"
-            {% endif %}
-                href="{% url 'admin:categories' %}"
+    <a class="header__link {% if 'user' in request.resolver_match.url_name %}header__link_active{% endif %}"
+       href="{% url 'admin:users' %}">Users</a>
+    <a class="header__link {% if request.resolver_match.url_name == 'categories' or category.name %}
+                header__link_active{% endif %}"
+       href="{% url 'admin:categories' %}"
     >Categories{% if category %}:<span>{{ category.name }}</span>{% endif %}</a>
 </div>

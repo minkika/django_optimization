@@ -18,7 +18,7 @@ def load_from_json(file_name):
 
 
 def get_hot_product():
-    products = Product.objects.filter(category__is_active=True)
+    products = Product.objects.filter(is_active=True, category__is_active=True)
     return random.sample(list(products), 1)[0]
 
 
@@ -30,53 +30,49 @@ def get_same_products(hot_product):
 def main(request):
     context = {
         'copyright': 'Golubeva Lyubov - GB',
-        'title': 'geekshop',
         'products': Product.objects.filter(category__is_active=True)[:4],
         'new_products': Product.objects.all()[3:7],
     }
     return render(request, 'mainapp/index.html', context)
 
-def new(request):
-    context = {
-        'copyright': 'Golubeva Lyubov - GB',
-        'title': 'geekshop',
-        'products': Product.objects.all()[3:7],
-    }
-    return render(request, 'mainapp/index.html', context)
-
 def catalog(request, pk=None, page=1):
-
     links_menu = ProductCategory.objects.filter(is_active=True)
-    category = {
-        'name': 'All furniture',
-        'pk': 0
-    }
 
-    if pk is None or pk == 0:
-        products_list = Product.objects.filter(category__is_active=True)
-    else:
-        category = get_object_or_404(ProductCategory, pk=pk)
-        products_list = Product.objects.filter(category__pk=pk)
+    if pk:
+        if pk == '0':
+            category = {
+                'pk': 0,
+                'name': 'all'
+            }
+            products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
+        else:
+            category = get_object_or_404(ProductCategory, pk=pk)
+            products = Product.objects.filter(category__pk=pk, is_active=True, category__is_active=True).order_by(
+                'price')
+
+        paginator = Paginator(products, 3)
+        try:
+            products_paginator = paginator.page(page)
+        except PageNotAnInteger:
+            products_paginator = paginator.page(1)
+        except EmptyPage:
+            products_paginator = paginator.page(paginator.num_pages)
+
+        content = {
+            'links_menu': links_menu,
+            'category': category,
+            'products': products_paginator,
+        }
+
+        return render(request, 'mainapp/products_list.html', content)
 
     hot_product = get_hot_product()
     same_products = get_same_products(hot_product)
 
-    paginator = Paginator(products_list, 2)
-    try:
-        product_paginator = paginator.page(page)
-    except PageNotAnInteger:
-        product_paginator = paginator(1)
-    except EmptyPage:
-        product_paginator = paginator(paginator.num_pages)
-
-
     content = {
-        'copyright': 'Golubeva Lyubov - GB',
         'links_menu': links_menu,
         'hot_product': hot_product,
         'same_products': same_products,
-        'category': category,
-        'products': product_paginator,
     }
 
     return render(request, 'mainapp/catalog.html', content)
@@ -93,15 +89,13 @@ def contacts(request):
 
 
 def product(request, pk):
-    title = 'Product'
-    links_menu = ProductCategory.objects.filter(category__is_active=True)
+    links_menu = ProductCategory.objects.filter(is_active=True)
 
     product = get_object_or_404(Product, pk=pk)
     same_products = get_same_products(product)
 
 
     content = {
-        'title': title,
         'links_menu': links_menu,
         'product': product,
         'same_products': same_products,

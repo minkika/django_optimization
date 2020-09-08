@@ -1,13 +1,15 @@
-{% extends 'authapp/base.html' %}
+{% extends 'mainapp/page-layout.html' %}
 {% load static %}
 
-
 {% block content %}
-    <form class="form-horizontal" action="{% url 'auth:register' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ register_form.as_p }}
-        <br>
-        <input class="form-control" type="submit" value="Register">
-    </form>
-
+    <div class="wrapper">
+        <div class="container">
+            <form class="form-horizontal" action="{% url 'auth:register' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ register_form.as_p }}
+                <br>
+                <input class="form-control" type="submit" value="Register">
+            </form>
+        </div>
+    </div>
 {% endblock %}

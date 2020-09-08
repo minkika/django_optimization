@@ -1,29 +1,27 @@
 {% load static %}
-<div class="header__menu">
-    <a
-            {% if request.resolver_match.url_name == 'main' %}
-                class="header__link header__link_active"
-            {% else %}
-                class="header__link"
-            {% endif %}
-                href="{% url 'main' %}"
-    >Home</a>
-    <a
-            {% if 'catalog' in request.resolver_match.route %}
-                class="header__link header__link_active"
-            {% else %}
-                class="header__link"
-            {% endif %}
-                href="{% url 'catalog:index' %}"
-    >Products</a>
-    <a
-            {% if request.resolver_match.url_name == 'contacts' %}
-                class="header__link header__link_active"
-            {% else %}
-                class="header__link"
-            {% endif %}
-                href="{% url 'contacts' %}"
-    >Contact</a>
+<a
+    href="{% url 'main' %}"
+{% if request.resolver_match.url_name == 'main' %}
+    class="header__link header__link_active"
+{% else %}
+    class="header__link"
+{% endif %}>Home</a>
+
+<a
+    href="{% url 'catalog:index' %}"
+{% if 'catalog' in request.resolver_match.route %}
+    class="header__link header__link_active"
+{% else %}
+    class="header__link"
+{% endif %}>Products</a>
+
+<a
+    href="{% url 'contacts' %}"
+{% if request.resolver_match.url_name == 'contacts' %}
+    class="header__link header__link_active"
+{% else %}
+    class="header__link"
+{% endif %}>Contact</a>
 
     {% if user.is_authenticated %}
         <span class="dropdown">
@@ -32,37 +30,33 @@
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+                {% if user.is_superuser %}
                 <li>
-                    <a class="header__link" href="{% url 'auth:edit' %}">
-                        Profile
-                    </a>
+                    <a href="{% url 'admin:users' %}">Admin tools</a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="{% url 'auth:edit' %}">Profile</a>
                 </li>
                 <li>
-                    <a class="header__link" href="{% url 'ordersapp:orders_list' %}">
-                        Orders
-                    </a>
+                    <a href="{% url 'ordersapp:orders_list' %}">Orders</a>
+                </li>
+                <li>
+                    <a href="{% url 'auth:logout' %}">Logout</a>
                 </li>
             </ul>
         </span>
-        <a href="{% url 'auth:logout' %}" class="header__link">Logout</a>
     {% else %}
         <a href="{% url 'auth:login' %}" class="header__link">Login</a>
     {% endif %}
 
-    {% if user.is_superuser %}
-        <a class="header__link" href="{% url 'admin:users' %}">Admin tools</a>
-    {% endif %}
 
-    <a href="{% url 'basket:view' %}" class="header__link"> Cart items
+    <a href="{% url 'basket:view' %}" class="header__link">
+        Cart items
         <span>
-        {% if basket %}
-            {{ basket.0.total_cost|floatformat:0 }} euro ({{ basket.0.total_quantity }} pcs)
-        {% endif %}
-    </span>
+            {% if basket %}
+                {{ basket.0.total_cost|floatformat:0 }} euro ({{ basket.0.total_quantity }} pcs)
+            {% endif %}
+        </span>
     </a>
 
-    {#    <span>#}
-    {#        <img alt="" src="{% static 'img/search.png' %}"/>#}
-    {#    </span>#}
-    </a>
-</div>

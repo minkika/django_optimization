@@ -1,0 +1,7 @@
+{% if title %}
+    <div class="wrapper page-title{{ className|default:"" }}">
+        <div class="container">
+            <div class="title">{{ title|default:""|title }}</div>
+        </div>
+    </div>
+{% endif %}

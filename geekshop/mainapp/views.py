@@ -30,22 +30,12 @@ def get_same_products(hot_product):
 def main(request):
     context = {
         'copyright': 'Golubeva Lyubov - GB',
-        'title': 'geekshop',
         'products': Product.objects.filter(category__is_active=True)[:4],
         'new_products': Product.objects.all()[3:7],
     }
     return render(request, 'mainapp/index.html', context)
 
-def new(request):
-    context = {
-        'copyright': 'Golubeva Lyubov - GB',
-        'title': 'geekshop',
-        'products': Product.objects.all()[3:7],
-    }
-    return render(request, 'mainapp/index.html', context)
-
 def catalog(request, pk=None, page=1):
-    title = 'Catalog'
     links_menu = ProductCategory.objects.filter(is_active=True)
 
     if pk:
@@ -69,7 +59,6 @@ def catalog(request, pk=None, page=1):
             products_paginator = paginator.page(paginator.num_pages)
 
         content = {
-            'title': title,
             'links_menu': links_menu,
             'category': category,
             'products': products_paginator,
@@ -81,7 +70,6 @@ def catalog(request, pk=None, page=1):
     same_products = get_same_products(hot_product)
 
     content = {
-        'title': title,
         'links_menu': links_menu,
         'hot_product': hot_product,
         'same_products': same_products,
@@ -101,7 +89,6 @@ def contacts(request):
 
 
 def product(request, pk):
-    title = 'Product'
     links_menu = ProductCategory.objects.filter(is_active=True)
 
     product = get_object_or_404(Product, pk=pk)
@@ -109,7 +96,6 @@ def product(request, pk):
 
 
     content = {
-        'title': title,
         'links_menu': links_menu,
         'product': product,
         'same_products': same_products,

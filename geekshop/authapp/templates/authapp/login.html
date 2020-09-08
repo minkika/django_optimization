@@ -1,28 +1,22 @@
-{% extends 'authapp/base.html' %}
+{% extends 'mainapp/page-layout.html' %}
 {% load static %}
 
-
 {% block content %}
-
-    {% if 'register' in request.META.HTTP_REFERER %}
-        <span>Message sent</span>
-    {% endif %}
-    <form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
-        {% csrf_token %}
-        {{ login_form.as_p }}
-        <br>
-        <input class="form-control" type="submit" value="Login">
-    </form>
-    <button class="btn btn-round form-control">
-        <a href="{% url 'auth:register' %}" class="">
-            Registration
-        </a>
-    </button>
-    <button class="btn btn-round form-control">
-        <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
-            Sign in with Google
-        </a>
-    </button>
-
-
+    <div class="wrapper">
+        <div class="container">
+            {% if 'register' in request.META.HTTP_REFERER %}
+                <span>Message sent</span>
+            {% endif %}
+            <form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
+                {% csrf_token %}
+                {{ login_form.as_p }}
+                <br>
+                <input class="form-control" type="submit" value="Login">
+            </form>
+            <div>
+                <a class="btn btn-round form-control" href="{% url 'auth:register' %}">Registration</a>
+                <a class="btn btn-round form-control" href="{% url 'social:begin' 'google-oauth2' %}?next=/">Log in with Google</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

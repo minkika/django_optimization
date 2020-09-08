@@ -1,0 +1,35 @@
+{#{% load avatar_tag %}#}
+{##}
+{#<div class="product">#}
+{#    <div class="product__cell">#}
+{#        <div style="margin: 50px 0px 0px 50px">#}
+{#            <img style="height: 100px" src="{{ hot_product.avatar|media_folder_users }}">#}
+{#        </div>#}
+{#        <div class="product__gallery">#}
+{#                        <span class="product__gallery-item">#}
+{#                            <img alt="" src="/media/{{ hot_product.image }}"/>#}
+{#                        </span>#}
+{#            <span class="product__gallery-item">#}
+{#                            <img alt="" src="/media/{{ hot_product.image }}"/>#}
+{#                        </span>#}
+{#            <span class="product__gallery-item product__gallery-item_selected">#}
+{#                            <img alt="" src="/media/{{ hot_product.image }}"/>#}
+{#                        </span>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{##}
+{#    <div class="product__cell">#}
+{#        <div class="product__title">{{ hot_product.name }}</div>#}
+{#        <div class="product__subtitle">Hot Deal</div>#}
+{#        <div class="product__price"><b>{{ hot_product.price }}</b>€</div>#}
+{#        <div class="product__button">#}
+{#            <a href='{% url 'basket:add' hot_product.pk %}' class="button button_red">#}
+{#                <span class="button_text">Order us</span>#}
+{#            </a>#}
+{#        </div>#}
+{#        <div class="product__info">#}
+{#            <p>{{ hot_product.description }}</p>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}

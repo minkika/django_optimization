@@ -1,0 +1,22 @@
+<div class="wrapper{{ className|default:"" }}">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tabs section-tabs_small">
+                {% for link_item in links_menu %}
+                    <a
+                            {% if category.pk == link_item.pk %}
+                                class="section-tabs__tab section-tabs__tab_active"
+                            {% else %}
+                                class="section-tabs__tab"
+                            {% endif %}
+                                href="{% url 'catalog:category' link_item.pk %}"
+                                title="{{ link_item.name }}"
+                    >{{ link_item.name }}</a>
+                {% endfor %}
+            </span>
+            <span class="section-aside">
+              <a href="{% url 'catalog:category' 0 %}">Explore all</a>
+            </span>
+        </div>
+    </div>
+</div>

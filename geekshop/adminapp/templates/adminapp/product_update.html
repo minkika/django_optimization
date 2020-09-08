@@ -1,6 +1,10 @@
-{% extends 'adminapp/base.html' %}
+{% extends 'mainapp/page-layout.html' %}
 {% load static %}
 
+
+{% block menu %}
+    {% include 'adminapp/includes/inc_menu.html' %}
+{% endblock %}
 
 {% block content %}
     <div class="new_category_form">

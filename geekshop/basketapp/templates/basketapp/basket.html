@@ -1,18 +1,18 @@
-{% extends 'basketapp/base.html' %}
+{% extends 'mainapp/page-layout.html' %}
 {% load static %}
 
 {% block content %}
-    <div class="basket__items">
-        {% include 'basketapp/includes/inc_basket_list.html' %}
+    {% include 'mainapp/block-title.html' with title='Your cart, '|add:user.first_name|title|add:user.last_name|title %}
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="basket__items">
+                {% include 'basketapp/includes/inc_basket_list.html' %}
+            </div>
+            <div>
+                <a class="btn btn-round" href="{% url 'ordersapp:order_create' %}">create order</a>
+                <a class="btn btn-round" href="{% url 'main' %}">main</a>
+            </div>
+        </div>
     </div>
-    <button class="btn btn-round">
-        <a href="{% url 'ordersapp:order_create' %}">
-            create order
-        </a>
-    </button>
-    <button class="btn btn-round">
-        <a href="{% url 'main' %}">
-            main
-        </a>
-    </button>
 {% endblock %}

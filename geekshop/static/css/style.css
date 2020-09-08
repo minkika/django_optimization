@@ -40,8 +40,6 @@ body {
 .container {
     margin: 0 auto;
     position: relative;
-    min-width: 1170px;
-    max-width: 1366px;
 }
 
 .button {
@@ -115,36 +113,41 @@ body {
     align-items: center;
 }
 
-#header {
+.header {
+    background-color: #f7f7f7;
+    padding: 64px 0 32px 0;
+    margin-bottom: 32px;
+}
+
+.header_absolute {
+    background-color: transparent;
     position: absolute;
-    top: 63px;
+    top: 0;
     right: 0;
     left: 0;
     z-index: 1;
 }
 
-#header .container {
+.header__items {
     display: flex;
     justify-content: space-between;
-    align-content: center;
-    align-items: center;
+    align-content: space-between;
+    width: 100%;
 }
 
 .header__logo {
     width: 185px;
     height: 22px;
     background: url("../img/logo.png") no-repeat 50% 50%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: inline-block;
 }
 
 .header__menu {
-}
-
-.header__menu span {
-    margin-left: 10px;
+    margin-left: 32px;
+    margin-right: -13px;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 .header__link {
@@ -159,6 +162,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #9c9c9c;
+    white-space: nowrap;
 }
 
 .header__link:hover {
@@ -294,9 +298,8 @@ body {
     margin-top: 0;
 }
 
-
 .section > .container {
-    padding: 120px 0;
+    padding: 32px 0;
 }
 
 .section-header {
@@ -585,7 +588,7 @@ body {
 }
 
 .footer__content {
-    padding: 120px 40px 40px 40px;
+    padding: 32px 40px 40px 40px;
 }
 
 .footer__nav,
@@ -700,12 +703,14 @@ input[type="email"] {
 }
 
 
-#page-title {
+.page-title {
     background-color: #f7f7f7;
+    margin-bottom: 32px;
+    margin-top: -32px;
 }
 
-#page-title .container {
-    padding: 160px 0 55px 0;
+.page-title .container {
+    padding: 100px 0 55px 0;
 }
 
 .contacts-info {
@@ -1304,4 +1309,8 @@ dl, dt, dd {
 .basket__item-remove {
     text-decoration: none;
     color: #6c6c6c;
+}
+
+.user_avatar {
+    height: 100px;
 }

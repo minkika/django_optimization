@@ -7,32 +7,36 @@
 {% endblock %}
 
 {% block content %}
-    <div class="user_delete">
-        {% if object.is_active %}
-            Are you sure to block <b>{{ object.username }} {% if object.first_name %}
-            ({{ object.first_name|title }}
-            {% if object.last_name %}
-                {{ object.last_name|title }}
-            {% endif %})
-        {% endif %}</b>?
-            <form action="{% url 'admin:user_delete' object.pk %}" method="post">
-                {% csrf_token %}
-                <input class="btn btn-danger" type="submit" value="Block">
-            </form>
-        {% else %}
-            Are you sure to unblock <b> {{ object.username }} {% if object.first_name %}
-            ({{ object.first_name|title }}
-            {% if object.last_name %}
-                {{ object.last_name|title }}
-            {% endif %})
-        {% endif %}</b>?
-            <form action="{% url 'admin:user_delete' object.pk %}" method="post">
-                {% csrf_token %}
-                <input class="btn btn-info" type="submit" value="Restore">
-            </form>
-        {% endif %}
-        <button class="btn btn-success">
-            <a href="{% url 'admin:users' %}">Cancel</a>
-        </button>
+    <div class="wrapper">
+        <div class="container">
+            <div class="user_delete">
+                {% if object.is_active %}
+                    Are you sure to block <b>{{ object.username }} {% if object.first_name %}
+                    ({{ object.first_name|title }}
+                    {% if object.last_name %}
+                        {{ object.last_name|title }}
+                    {% endif %})
+                {% endif %}</b>?
+                    <form action="{% url 'admin:user_delete' object.pk %}" method="post">
+                        {% csrf_token %}
+                        <input class="btn btn-danger" type="submit" value="Block">
+                    </form>
+                {% else %}
+                    Are you sure to unblock <b> {{ object.username }} {% if object.first_name %}
+                    ({{ object.first_name|title }}
+                    {% if object.last_name %}
+                        {{ object.last_name|title }}
+                    {% endif %})
+                {% endif %}</b>?
+                    <form action="{% url 'admin:user_delete' object.pk %}" method="post">
+                        {% csrf_token %}
+                        <input class="btn btn-info" type="submit" value="Restore">
+                    </form>
+                {% endif %}
+                <button class="btn btn-success">
+                    <a href="{% url 'admin:users' %}">Cancel</a>
+                </button>
+            </div>
+        </div>
     </div>
 {% endblock %}

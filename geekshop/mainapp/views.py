@@ -28,16 +28,18 @@ def get_same_products(hot_product):
 
 
 def main(request):
+    products = Product.objects.filter(category__is_active=True, quantity__gte=1)[:3]
     context = {
         'copyright': 'Golubeva Lyubov - GB',
-        'products': Product.objects.filter(category__is_active=True, quantity__gte=1)[:4],
-        'new_products': Product.objects.all()[3:7],
+        'products': products,
+        # 'new_products': Product.objects.all()[3:7],
     }
+    # print(products.query)
     return render(request, 'mainapp/index.html', context)
 
 
 def catalog(request, pk=None, page=1):
-    links_menu = ProductCategory.objects.filter(is_active=True, quantity__gte=1)
+    links_menu = ProductCategory.objects.filter(is_active=True)
 
     if pk:
         if pk == '0':

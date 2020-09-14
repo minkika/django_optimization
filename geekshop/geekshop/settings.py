@@ -116,18 +116,18 @@ WSGI_APPLICATION = 'geekshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+with open('geekshop/env.json', 'r') as f:
+    SECRETS = json.load(f)
+
+postgres_default = SECRETS['postgres_default']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-    # 'default': {
-    #     'NAME': 'minkika_geeksh96',
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'USER': 'minkika_geeksh96',
-    #     'PASSWORD': 'q97MawM3F7',
-    #     'HOST': 'postgresql5.locum.ru'
-    # }
+    # 'default': postgres_default
+
 }
 
 # Password validation
@@ -190,9 +190,6 @@ EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = None, None
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'tmp/email-messages'
-
-with open('geekshop/env.json', 'r') as f:
-    SECRETS = json.load(f)
 
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = SECRETS['SOCIAL_AUTH_GOOGLE_OAUTH2_KEY']

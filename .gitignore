@@ -11,4 +11,7 @@
 /geekshop/authapp/migrations/
 /geekshop/basketapp/migrations/
 __pycache__*
-/geekshop/geekshop/google+.json
+/geekshop/geekshop/env.json
+env/
+/geekshop/geekshop/environment.py
+.idea

@@ -24,6 +24,7 @@
                         </span>
                     </div>
                 </div>
+
                 <div class="product__cell">
                     <div class="product__title">{{ hot_product.name }}</div>
                     <div class="product__subtitle">Hot Deal</div>
@@ -43,25 +44,25 @@
 
     <div class="wrapper">
         <div class="container">
-    <div class="section-header">
-        <span class="section-title">Related products</span>
-        <span class="section-aside">Explore all</span>
-    </div>
-    <div class="tiles">
-        {% for product in same_products %}
-            <a class="tiles__tile" href="{% url 'catalog:product' product.pk %}">
-                <div class="tile-info">
-                    <div class="tile-info__content">
-                        <span class="button button_round"></span>
-                        <div class="tile-info__title">{{ product.name }}</div>
-                        <div class="tile-info__description">{{ product.short_desc }}</div>
-                    </div>
-                </div>
-                <img alt="{{ product.name }}" src="{{ product.image|media_folder_products }}"/>
-            </a>
-        {% endfor %}
-    </div>
-    </div>
+            <div class="section-header">
+                <span class="section-title">Related products</span>
+                <span class="section-aside">Explore all</span>
+            </div>
+            <div class="tiles">
+                {% for product in same_products %}
+                    <a class="tiles__tile" href="{% url 'catalog:product' product.pk %}">
+                        <div class="tile-info">
+                            <div class="tile-info__content">
+                                <span class="button button_round"></span>
+                                <div class="tile-info__title">{{ product.name }}</div>
+                                <div class="tile-info__description">{{ product.short_desc }}</div>
+                            </div>
+                        </div>
+                        <img alt="{{ product.name }}" src="{{ product.image|media_folder_products }}"/>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
 {% endblock %}

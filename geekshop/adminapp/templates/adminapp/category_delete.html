@@ -1,16 +1,8 @@
 {% extends 'mainapp/page-layout.html' %}
 {% load static %}
 
-{% block menu %}
+{% block header %}
     {% include 'adminapp/includes/inc_menu.html' %}
-{% endblock %}
-
-{% block title %}
-    <div class="wrapper" id="page-title">
-        <div class="container">
-            <div class="title">{{ title|title }}</div>
-        </div>
-    </div>
 {% endblock %}
 
 {% block content %}

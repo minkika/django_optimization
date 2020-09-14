@@ -1,9 +1,16 @@
-<div class="header__menu">
-    <a class="header__link" href="{% url 'main' %}">Site</a>
-    <a class="header__link {% if 'user' in request.resolver_match.url_name %}header__link_active{% endif %}"
-       href="{% url 'admin:users' %}">Users</a>
-    <a class="header__link {% if request.resolver_match.url_name == 'categories' or category.name %}
+<div class="wrapper header{{ className|default:"" }}">
+    <div class="container">
+        <div class="header__items">
+            <div class="header__logo"></div>
+            <div class="header__menu">
+                <a class="header__link" href="{% url 'main' %}">Site</a>
+                <a class="header__link {% if 'user' in request.resolver_match.url_name %}header__link_active{% endif %}"
+                   href="{% url 'admin:users' %}">Users</a>
+                <a class="header__link {% if request.resolver_match.url_name == 'categories' or category.name %}
                 header__link_active{% endif %}"
-       href="{% url 'admin:categories' %}"
-    >Categories{% if category %}:<span>{{ category.name }}</span>{% endif %}</a>
+                   href="{% url 'admin:categories' %}"
+                >Categories{% if category %}:<span>{{ category.name }}</span>{% endif %}</a>
+            </div>
+        </div>
+    </div>
 </div>

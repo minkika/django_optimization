@@ -1,5 +1,7 @@
 {% extends "mainapp/page-layout.html" %}
 {% load static %}
+{% load cache %}
+
 
 {% block content %}
     <div class="wrapper">
@@ -33,7 +35,13 @@
                                         {% endif %}
                                         {{ field.errors.as_ul }}
                                         {% if field.name != 'price' %}
-                                            {{ field }}
+                                            {% if field.name == 'product' %}
+                                                {% cache 3600 orderitemform_product field.value %}
+                                                    {{ field }}
+                                                {% endcache %}
+                                            {% else %}
+                                                {{ field }}
+                                            {% endif %}
                                         {% else %}
                                             {% if field.value %}
                                                 <span class="orderitems-{{ forloop.parentloop.counter0 }}-price">
@@ -47,7 +55,8 @@
                             </tr>
                         {% endfor %}
                     </table>
-                    <button type="submit" value="сохранить" class="btn btn-default btn-round form-control last">save</button>
+                    <button type="submit" value="сохранить" class="btn btn-default btn-round form-control last">save
+                    </button>
                     {% include 'ordersapp/include/inc_order_actions.html' %}
                 </form>
             </div>

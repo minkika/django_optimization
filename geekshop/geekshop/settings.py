@@ -56,6 +56,7 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 MIDDLEWARE = [
+    # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 if DEBUG:
@@ -203,3 +205,17 @@ EMAIL_FILE_PATH = 'tmp/email-messages'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = SECRETS['SOCIAL_AUTH_GOOGLE_OAUTH2_KEY']
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = SECRETS['SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET']
 SECRET_KEY = SECRETS['SECRET_KEY']
+
+if os.name == 'posix':
+   CACHE_MIDDLEWARE_ALIAS = 'default'
+   CACHE_MIDDLEWARE_SECONDS = 120
+   CACHE_MIDDLEWARE_KEY_PREFIX = 'geekshop'
+
+   CACHES = {
+       'default': {
+           'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+           'LOCATION': '127.0.0.1:11211',
+       }
+   }
+
+LOW_CACHE = True

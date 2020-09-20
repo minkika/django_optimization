@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.shortcuts import render, HttpResponseRedirect
 from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm
@@ -26,6 +27,7 @@ def login(request):
     return render(request, 'authapp/login.html', content)
 
 
+@login_required
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('main'))
@@ -68,6 +70,7 @@ def verify(request, email, activation_key):
         print(f'error activation user : {e.args}')
         return HttpResponseRedirect(reverse('main'))
 
+
 def send_verify_mail(user):
     verify_link = reverse('auth:verify', args=[user.email, user.activation_key])
     title = f'Verification of {user.username}'
@@ -78,7 +81,9 @@ def send_verify_mail(user):
 from django.db import transaction
 from authapp.forms import ShopUserProfileEditForm
 
+
 @transaction.atomic
+@login_required()
 def edit(request):
     title = 'user / edit'
 

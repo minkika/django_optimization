@@ -1,22 +1,26 @@
 {% extends 'mainapp/page-layout.html' %}
 {% load static %}
 
-{% block menu %}
+{% block header %}
     {% include 'adminapp/includes/inc_menu.html' %}
 {% endblock %}
 
 {% block content %}
-    <div class="new_category_form">
-        <form class="form-horizontal" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input class="form-control" type="submit" value="Save">
-        </form>
-        <button class="btn btn-round form-control last">
-            <a href="{% url 'admin:categories' %}">
-                Back
-            </a>
-        </button>
+    <div class="wrapper">
+        <div class="container">
+            <div class="new_category_form">
+                <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input class="form-control" type="submit" value="Save">
+                </form>
+                <button class="btn btn-round form-control last">
+                    <a href="{% url 'admin:categories' %}">
+                        Back
+                    </a>
+                </button>
+            </div>
+        </div>
     </div>
 {% endblock %}
 

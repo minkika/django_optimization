@@ -22,9 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
-# DEBUG = False
-
+# DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -91,7 +90,7 @@ if DEBUG:
        'template_profiler_panel.panels.template.TemplateProfilerPanel',
    ]
 
-   # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+   STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 ROOT_URLCONF = 'geekshop.urls'
 
@@ -123,19 +122,12 @@ with open('geekshop/env.json', 'r') as f:
 postgres_default = SECRETS['postgres_default']
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
     'default': {
-        'NAME': 'geekshop',
-        'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'django',
-        'PASSWORD': 'geekbrains',
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-    # 'default': postgres_default
 
+    # 'default': postgres_default
 }
 
 # Password validation
@@ -174,9 +166,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, "static"),
+# )
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
